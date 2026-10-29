@@ -1,0 +1,34 @@
+[Unit]
+Description=HEIMDALL-RS L3/L4 Intelligent Firewall
+Documentation=https://github.com/YOUR_ORG/HEIMDALL-RS
+After=network.target
+
+[Service]
+Type=simple
+User=root
+EnvironmentFile=-/etc/heimdall/heimdall.env
+ExecStart=/opt/heimdall/heimdall \
+    --interface eth0 \
+    --mode skb \
+    --ebpf /opt/heimdall/heimdall-xdp-ebpf \
+    --svalinn https://your-threat-intel-hub.example.com \
+    --apikey ${SVALINN_API_KEY} \
+    --autoblock \
+    --failsafe \
+    --prom-addr 0.0.0.0:9091
+
+Restart=always
+RestartSec=5
+
+# Security hardening
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_SYS_ADMIN CAP_BPF
+AmbientCapabilities=CAP_NET_ADMIN CAP_SYS_ADMIN CAP_BPF
+NoNewPrivileges=yes
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=heimdall
+
+[Install]
+WantedBy=multi-user.target

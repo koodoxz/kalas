@@ -1,0 +1,48 @@
+# HEIMDALL-RS Configuration
+# NOTE: this file is not currently read by the binary -- heimdall takes all
+# settings via CLI flags only (see main.rs). This YAML documents the same
+# settings for reference/future --config support, but editing it has no
+# effect today. Use the equivalent --flag on the command line instead.
+# Copy this file to /etc/heimdall/config.yaml
+
+# Network interface to attach XDP
+interface: eth0
+
+# XDP mode: skb (generic), drv (native), hw (hardware offload)
+mode: skb
+
+# SVALINN Intelligence Hub
+svalinn:
+  url: https://your-threat-intel-hub.example.com
+  api_key: ${SVALINN_API_KEY}
+  sync_interval: 300  # seconds
+  min_score: 70       # minimum threat score to block
+
+# Protection settings
+protection:
+  autoblock: true
+  monitor_only: false
+  ban_ttl: 3600       # seconds (1 hour)
+
+# Fail-safe (pause auto-block if block rate too high)
+failsafe:
+  enabled: true
+  threshold: 0.5      # 50% of packets blocked = pause
+
+# Rate limiting
+syn_rate_limit:
+  limit: 100          # SYN per second per IP
+  burst: 200          # Burst allowance
+
+# Port scan detection
+port_scan:
+  threshold: 20       # unique ports in window
+  window: 10          # seconds
+
+# Prometheus metrics
+metrics:
+  addr: 0.0.0.0:9091
+
+# Logging
+log:
+  level: info         # trace, debug, info, warn, error

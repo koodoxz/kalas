@@ -1,0 +1,15 @@
+[package]
+name = "heimdall-xdp"
+version = "0.1.0"
+edition = "2021"
+description = "HEIMDALL XDP loader and map management"
+
+[dependencies]
+aya = { workspace = true }
+aya-log = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+
+[build-dependencies]

@@ -1,0 +1,31 @@
+[package]
+name = "heimdall"
+version = "0.1.0"
+edition = "2021"
+authors = ["koodoxz"]
+description = "HEIMDALL-RS: L3/L4 Intelligent Firewall with XDP/eBPF"
+license = "AGPL-3.0-or-later"
+
+[dependencies]
+aya = { workspace = true }
+aya-log = { workspace = true }
+tokio = { workspace = true }
+clap = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+reqwest = { workspace = true, features = ["json", "rustls-tls"], default-features = false }
+serde = { workspace = true }
+serde_json = { workspace = true }
+prometheus = { workspace = true }
+hyper = { workspace = true }
+hyper-util = { workspace = true }
+http-body-util = { workspace = true }
+hostname = "0.4"
+
+heimdall-xdp = { path = "../heimdall-xdp" }
+
+[[bin]]
+name = "heimdall"
+path = "src/main.rs"
