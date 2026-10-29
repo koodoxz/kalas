@@ -3,6 +3,7 @@
 > **High-Speed Layer 3 & Layer 4 Kernel Firewall — Engineered in Rust via eBPF/XDP**  
 > Wire-speed packet dropping (XDP_DROP), SYN flood suppression, zero-copy AF_XDP ring buffers, and dynamic threat map synchronization.
 
+[![CI](https://github.com/koodoxz/kalas/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/koodoxz/kalas/actions)
 [![Rust](https://img.shields.io/badge/Rust-1.75+-000000?style=flat&logo=rust)](https://www.rust-lang.org/)
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0--or--later-blue.svg)](LICENSE)
 [![Kernel](https://img.shields.io/badge/Linux-eBPF%20%7C%20AF__XDP-orange.svg)](#architecture)
